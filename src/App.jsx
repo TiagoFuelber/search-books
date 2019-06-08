@@ -1,7 +1,11 @@
 import React from "react";
+import { Normalize } from "styled-normalize";
+import { GlobalStyle } from "./view";
 
 const App = () => (
   <>
+    <Normalize />
+    <GlobalStyle />
     <header>
       <h1>Search books</h1>
       <div>
