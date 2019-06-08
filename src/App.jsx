@@ -1,6 +1,6 @@
-import React from "react";
-import { Normalize } from "styled-normalize";
-import { GlobalStyle, Container } from "./view";
+import React from 'react';
+import { Normalize } from 'styled-normalize';
+import { GlobalStyle, Container } from './view';
 
 const App = () => (
   <>
