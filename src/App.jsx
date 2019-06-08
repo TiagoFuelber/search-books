@@ -1,6 +1,6 @@
 import React from "react";
 import { Normalize } from "styled-normalize";
-import { GlobalStyle } from "./view";
+import { GlobalStyle, Container } from "./view";
 
 const App = () => (
   <>
@@ -16,13 +16,13 @@ const App = () => (
         </label>
       </div>
     </header>
-    <div className="container">
+    <Container>
       <div className="book">Book 1</div>
       <div className="book">Book 2</div>
       <div className="book">Book 3</div>
       <div className="book">Book 4</div>
       <button>Load more</button>
-    </div>
+    </Container>
   </>
 );
 
