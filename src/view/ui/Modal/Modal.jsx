@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { StyledModal } from './StyledModal';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 export const Modal = ({ children, onClose }) => (
   <StyledModal>
     <div className="modal">
-      <FontAwesomeIcon icon="times" className="close" onClick={onClose} />
+      <FontAwesomeIcon icon={faTimes} className="close" onClick={onClose} />
       {children}
     </div>
   </StyledModal>

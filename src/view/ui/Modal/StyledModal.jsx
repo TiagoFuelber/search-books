@@ -1,4 +1,5 @@
 import Styled from 'styled-components';
+import { MOBILE } from '../styles/constants';
 
 export const StyledModal = Styled.div`
   position: fixed;
@@ -16,7 +17,13 @@ export const StyledModal = Styled.div`
     top: 50px;
     left: 50%;
     transform: translateX(-50%);
-    min-width: 500px;
+    width: calc(100% - 20px);
+    box-sizing: border-box;
+
+    @media screen and (min-width: ${MOBILE}) {
+      min-width: 500px;
+      max-width: 700px;
+    }
   }
 
   .close {
