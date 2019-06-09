@@ -15,4 +15,8 @@ export const StyledHeader = Styled.header`
   .search {
     margin-bottom: 10px;
   }
+
+  .favourites {
+    margin-top: 10px;
+  }
 `;

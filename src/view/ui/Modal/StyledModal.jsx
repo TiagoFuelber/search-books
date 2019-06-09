@@ -8,6 +8,7 @@ export const StyledModal = Styled.div`
   height: 100vh;
   width: 100vw;
   background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
 
   .modal {
     padding: 15px;
@@ -18,7 +19,9 @@ export const StyledModal = Styled.div`
     left: 50%;
     transform: translateX(-50%);
     width: calc(100% - 20px);
+    max-height: calc(100vh - 100px);
     box-sizing: border-box;
+    overflow: auto;
 
     @media screen and (min-width: ${MOBILE}) {
       min-width: 500px;

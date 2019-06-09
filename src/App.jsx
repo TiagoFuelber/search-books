@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { Normalize } from 'styled-normalize';
-import { GlobalStyle, Container, Header, Book } from './view';
+import {
+  GlobalStyle,
+  Container,
+  Header,
+  Book,
+  StyledBooksContainer
+} from './view';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faSearch, faStar, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { mockBooks } from './mockBooks';
@@ -24,10 +30,11 @@ class App extends Component {
         <GlobalStyle />
         <Container>
           <Header />
-          {books.map(book => (
-            <Book key={book.id} book={book} />
-          ))}
-
+          <StyledBooksContainer>
+            {books.map(book => (
+              <Book key={book.id} book={book} />
+            ))}
+          </StyledBooksContainer>
           <button>Load more</button>
         </Container>
       </>

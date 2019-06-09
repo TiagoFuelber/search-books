@@ -120,14 +120,14 @@ describe('Renders the book component', () => {
     it('Renders the title of the book', () => {
       const title = infoDiv.find('.title');
       expect(title).to.have.length(1);
-      expect(title.text()).to.be.equal('- Querido John');
+      expect(title.text()).to.be.equal('Querido John');
     });
 
     it('Renders the authors information', () => {
       const authors = infoDiv.find('.authors');
       expect(authors).to.have.length(1);
       expect(authors.text()).to.be.equal(
-        '- Nicholas Sparks, Tiago Fuelber, Taís Jaques'
+        'Nicholas Sparks, Tiago Fuelber, Taís Jaques'
       );
     });
   });
