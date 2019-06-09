@@ -3,7 +3,6 @@ import '../../helpers/enzymeAdapter';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import { Header } from './Header';
-import { SearchInput } from '../ui/SearchInput/SearchInput';
 import { Checkbox } from '../ui/Checkbox/Checkbox';
 
 describe('Renders the Header component', () => {
@@ -41,8 +40,7 @@ describe('Renders the Header component', () => {
     });
 
     it('Renders the SearchInput component', () => {
-      expect(actionsContainer.contains(<SearchInput className="search" />)).to
-        .be.true;
+      expect(actionsContainer.find('SearchInput')).to.have.length(1);
     });
 
     it('Renders checkbox to select favourites', () => {

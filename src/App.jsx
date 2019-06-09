@@ -11,6 +11,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faSearch, faStar, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { mockBooks } from './mockBooks';
 import { Book as BookDomain } from './domain/Book';
+import { DARK_GRAY } from './view/ui/styles/constants';
 
 library.add(faSearch);
 library.add(faStar);
@@ -18,24 +19,46 @@ library.add(faTimes);
 
 class App extends Component {
   state = {
-    books: mockBooks.map(book => new BookDomain(book))
+    books: [],
+    searchQuery: '',
+    showFavourites: false
   };
 
+  updateSearchQuery = query => this.setState({ searchQuery: query });
+
+  toggleShowFavourites = () =>
+    this.setState({ showFavourites: !this.state.showFavourites });
+
   render() {
-    const { books } = this.state;
+    const { books, searchQuery, showFavourites } = this.state;
 
     return (
       <>
         <Normalize />
         <GlobalStyle />
         <Container>
-          <Header />
+          <Header
+            query={searchQuery}
+            onSearchUpdate={this.updateSearchQuery}
+            showFavourites={showFavourites}
+            onShowFavourites={this.toggleShowFavourites}
+          />
           <StyledBooksContainer>
-            {books.map(book => (
-              <Book key={book.id} book={book} />
-            ))}
+            {books.length ? (
+              books.map(book => <Book key={book.id} book={book} />)
+            ) : (
+              <div
+                style={{
+                  color: `${DARK_GRAY}`,
+                  fontSize: '25px',
+                  textAlign: 'center'
+                }}
+              >
+                No books to show
+              </div>
+            )}
           </StyledBooksContainer>
-          <button>Load more</button>
+          {!books.length || <button>Load more</button>}
         </Container>
       </>
     );
