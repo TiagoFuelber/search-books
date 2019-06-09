@@ -1,6 +1,10 @@
 import React from 'react';
 import { Normalize } from 'styled-normalize';
 import { GlobalStyle, Container, Header } from './view';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faSearch);
 
 const App = () => (
   <>
