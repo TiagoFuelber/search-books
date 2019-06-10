@@ -15,7 +15,7 @@ describe('Books repository', () => {
       });
     });
 
-    context('get a list of authors from an API - getAuthors', () => {
+    context('get a list of books from an API - searchBooks', () => {
       let fetchedStub;
 
       const mockApiResponse = (body = {}) =>
@@ -50,7 +50,7 @@ describe('Books repository', () => {
       it('should call fetch with the correct URL', done => {
         const books = BooksRepository.searchBooks('Darth Vader');
         expect(fetchedStub).to.have.been.calledWith(
-          'https://www.googleapis.com/books/v1/volumes?q=Darth%20Vader'
+          'https://www.googleapis.com/books/v1/volumes?q=Darth+Vader'
         );
         done();
       });

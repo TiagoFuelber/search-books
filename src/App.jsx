@@ -9,9 +9,9 @@ import {
 } from './view';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faSearch, faStar, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { mockBooks } from './mockBooks';
-import { Book as BookDomain } from './domain/Book';
 import { DARK_GRAY } from './view/ui/styles/constants';
+import { searchBooks } from './application';
+import { throttle } from './helpers/throttle';
 
 library.add(faSearch);
 library.add(faStar);
@@ -24,7 +24,15 @@ class App extends Component {
     showFavourites: false
   };
 
-  updateSearchQuery = query => this.setState({ searchQuery: query });
+  updateSearchQuery = async query => {
+    this.setState({ searchQuery: query });
+    this.throttledSearchBooks(query);
+  };
+
+  throttledSearchBooks = throttle(async query => {
+    const books = await searchBooks(query);
+    this.setState({ books });
+  }, 200);
 
   toggleShowFavourites = () =>
     this.setState({ showFavourites: !this.state.showFavourites });
@@ -38,7 +46,7 @@ class App extends Component {
         <GlobalStyle />
         <Container>
           <Header
-            query={searchQuery}
+            searchQuery={searchQuery}
             onSearchUpdate={this.updateSearchQuery}
             showFavourites={showFavourites}
             onShowFavourites={this.toggleShowFavourites}
@@ -66,5 +74,3 @@ class App extends Component {
 }
 
 export default App;
-
-// AIzaSyACq7VStwGKxc3eUeIiWt__3uIeDaQOXvs

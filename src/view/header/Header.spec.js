@@ -9,7 +9,9 @@ describe('Renders the Header component', () => {
   let header = null;
 
   beforeEach(() => {
-    header = shallow(<Header />);
+    header = shallow(
+      <Header searchQuer={''} onSearchUpdate={value => value} />
+    );
   });
 
   context('Title', () => {
