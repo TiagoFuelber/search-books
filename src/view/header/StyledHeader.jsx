@@ -10,10 +10,12 @@ export const StyledHeader = Styled.header`
   .actions {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
   }
 
   .search {
     margin-bottom: 10px;
+    width: 100%;
   }
 
   .favourites {

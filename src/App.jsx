@@ -10,8 +10,14 @@ import {
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faSearch, faStar, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { DARK_GRAY } from './view/ui/styles/constants';
-import { searchBooks } from './application';
+import {
+  searchBooks,
+  addFavourite,
+  getFavourites,
+  isFavourite
+} from './application';
 import { throttle } from './helpers/throttle';
+import { removeFavourite } from './application/removeFavourite';
 
 library.add(faSearch);
 library.add(faStar);
@@ -21,24 +27,46 @@ class App extends Component {
   state = {
     books: [],
     searchQuery: '',
-    showFavourites: false
+    showFavourites: false,
+    favourites: []
   };
+
+  componentDidMount() {
+    this.setState({ favourites: getFavourites() });
+  }
 
   updateSearchQuery = async query => {
     this.setState({ searchQuery: query });
-    this.throttledSearchBooks(query);
+    if (!this.state.showFavourites) this.throttledSearchBooks(query);
   };
 
   throttledSearchBooks = throttle(async query => {
-    const books = await searchBooks(query);
+    const books = query ? await searchBooks(query) : [];
     this.setState({ books });
   }, 200);
 
-  toggleShowFavourites = () =>
+  toggleShowFavourites = () => {
+    this.state.showFavourites
+      ? this.throttledSearchBooks(this.state.searchQuery)
+      : this.setState({ books: this.state.favourites });
+
     this.setState({ showFavourites: !this.state.showFavourites });
+  };
+
+  addToFavourites = book => {
+    const newFavourites = addFavourite(book);
+    this.setState({ favourites: newFavourites });
+    if (this.state.showFavourites) this.setState({ books: newFavourites });
+  };
+
+  removeFromFavourites = book => {
+    const newFavourites = removeFavourite(book);
+    this.setState({ favourites: newFavourites });
+    if (this.state.showFavourites) this.setState({ books: newFavourites });
+  };
 
   render() {
-    const { books, searchQuery, showFavourites } = this.state;
+    const { books, searchQuery, showFavourites, favourites } = this.state;
 
     return (
       <>
@@ -53,7 +81,18 @@ class App extends Component {
           />
           <StyledBooksContainer>
             {books.length ? (
-              books.map(book => <Book key={book.id} book={book} />)
+              books.map(book => (
+                <Book
+                  key={book.id}
+                  book={book}
+                  onAddToFavourites={
+                    isFavourite(book.id, favourites)
+                      ? this.removeFromFavourites
+                      : this.addToFavourites
+                  }
+                  isFavourite={isFavourite(book.id, favourites)}
+                />
+              ))
             ) : (
               <div
                 style={{

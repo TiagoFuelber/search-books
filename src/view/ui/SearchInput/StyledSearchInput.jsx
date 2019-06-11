@@ -3,6 +3,7 @@ import { LIGHT_GRAY, DARK_GRAY } from '../styles/constants';
 
 export const StyledSearchInput = Styled.div`
   position: relative;
+  width: 100%;
 
   .search-icon {
     color: ${DARK_GRAY};

@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { Modal } from '../ui/Modal/Modal';
 import { StyledBook } from './StyledBook';
-import { DARK_GRAY } from '../ui/styles/constants';
+import { DARK_GRAY, BLUE } from '../ui/styles/constants';
 
 export class Book extends Component {
   state = {
@@ -13,7 +13,7 @@ export class Book extends Component {
   };
 
   render() {
-    const { book } = this.props;
+    const { book, onAddToFavourites, isFavourite } = this.props;
     const {
       smallThumbnailLink,
       title,
@@ -45,11 +45,12 @@ export class Book extends Component {
             )}
           </div>
           <FontAwesomeIcon
-            style={{ color: `${DARK_GRAY}` }}
+            style={{ color: isFavourite ? `${BLUE}` : `${DARK_GRAY}` }}
             className="favourite"
             icon={faStar}
             size="2x"
             title="Favourite this book"
+            onClick={() => onAddToFavourites(book)}
           />
           {isModalOpen && (
             <Modal onClose={() => this.setState({ isModalOpen: false })}>
@@ -75,5 +76,7 @@ export class Book extends Component {
 }
 
 Book.propTypes = {
-  book: PropTypes.shape(BookDomain).isRequired
+  book: PropTypes.shape(BookDomain).isRequired,
+  onAddToFavourites: PropTypes.func.isRequired,
+  isFavourite: PropTypes.bool.isRequired
 };
