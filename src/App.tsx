@@ -27,8 +27,8 @@ interface Props {}
 
 interface State {
   books: Book[];
-  searchQuery: String;
-  showFavourites: Boolean;
+  searchQuery: string;
+  showFavourites: boolean;
   favourites: Book[];
 }
 
