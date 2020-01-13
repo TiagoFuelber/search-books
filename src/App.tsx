@@ -1,32 +1,41 @@
-import React, { Component } from 'react';
-import { Normalize } from 'styled-normalize';
+import * as React from "react";
+import { Normalize } from "styled-normalize";
 import {
   GlobalStyle,
   Container,
   Header,
   Book,
   StyledBooksContainer
-} from './view';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faSearch, faStar, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { DARK_GRAY } from './view/ui/styles/constants';
+} from "./view";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faSearch, faStar, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { DARK_GRAY } from "./view/ui/styles/constants";
 import {
   searchBooks,
   addFavourite,
   getFavourites,
   isFavourite
-} from './application';
-import { throttle } from './helpers/throttle';
-import { removeFavourite } from './application/removeFavourite';
+} from "./application";
+import { throttle } from "./helpers/throttle";
+import { removeFavourite } from "./application/removeFavourite";
 
 library.add(faSearch);
 library.add(faStar);
 library.add(faTimes);
 
-class App extends Component {
+interface Props {}
+
+interface State {
+  books: Book[];
+  searchQuery: String;
+  showFavourites: Boolean;
+  favourites: Book[];
+}
+
+class App extends React.Component<Props, State> {
   state = {
     books: [],
-    searchQuery: '',
+    searchQuery: "",
     showFavourites: false,
     favourites: []
   };
@@ -97,8 +106,8 @@ class App extends Component {
               <div
                 style={{
                   color: `${DARK_GRAY}`,
-                  fontSize: '25px',
-                  textAlign: 'center'
+                  fontSize: "25px",
+                  textAlign: "center"
                 }}
               >
                 No books to show

@@ -6,16 +6,21 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 require('babel-polyfill');
 
 module.exports = {
-  devtool: true,
-  entry: ['babel-polyfill', './src/index.jsx'],
+  devtool: 'inline-source-map',
+  entry: ['babel-polyfill', './src/index.tsx'],
   output: {
     path: path.join(__dirname, '/dist'),
     filename: 'index_bundle.js',
     publicPath: '/'
   },
-  resolve: { extensions: ['.js', '.jsx'] },
+  resolve: { extensions: ['.tsx', '.js', '.jsx'] },
   module: {
     rules: [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
