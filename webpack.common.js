@@ -13,13 +13,13 @@ module.exports = {
     filename: 'index_bundle.js',
     publicPath: '/'
   },
-  resolve: { extensions: ['.tsx', '.js', '.jsx'] },
+  resolve: { extensions: ['.tsx', '.js', '.jsx', '.ts'] },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
         use: 'ts-loader',
-        exclude: /node_modules/,
+        exclude: /node_modules/
       },
       {
         test: /\.jsx?$/,
