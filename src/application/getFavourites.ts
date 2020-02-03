@@ -1,5 +1,5 @@
 import BooksRepository from '../infra/BooksRepository';
-import { Book } from '../domain';
+import { Book, BookDTO } from '../domain';
 
-export const getFavourites = () =>
-  BooksRepository.getFavourites().map(book => new Book(book));
+export const getFavourites = (): Book[] =>
+  BooksRepository.getFavourites().map((book: BookDTO) => new Book(book));

@@ -1,6 +1,7 @@
 import Styled from 'styled-components';
 import { LIGHT_GRAY } from '../ui/styles/constants';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const StyledBook = Styled.div`
   display: flex;
   padding: 5px;

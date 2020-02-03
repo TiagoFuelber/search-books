@@ -1,6 +1,7 @@
 import Styled from 'styled-components';
 import { MOBILE } from '../styles/constants';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const StyledModal = Styled.div`
   position: fixed;
   top: 0;

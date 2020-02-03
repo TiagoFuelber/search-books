@@ -1,5 +1,6 @@
 import Styled from 'styled-components';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const StyledHeader = Styled.header`
   margin-bottom: 30px;
 

@@ -1,10 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { StyledModal } from './StyledModal';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-export const Modal = ({ children, onClose }) => (
+interface Props {
+  children: JSX.Element[] | JSX.Element | string;
+  onClose: () => void;
+}
+
+export const Modal = ({ children, onClose }: Props): React.ReactElement => (
   <StyledModal>
     <div className="modal">
       <FontAwesomeIcon icon={faTimes} className="close" onClick={onClose} />
@@ -12,16 +16,3 @@ export const Modal = ({ children, onClose }) => (
     </div>
   </StyledModal>
 );
-
-Modal.defaultProps = {
-  children: null,
-  onClose: () => null
-};
-
-Modal.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]),
-  onClose: PropTypes.func
-};

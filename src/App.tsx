@@ -4,7 +4,7 @@ import {
   GlobalStyle,
   Container,
   Header,
-  Book,
+  BookCard,
   StyledBooksContainer
 } from './view';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -18,6 +18,7 @@ import {
 } from './application';
 import { throttle } from './helpers/throttle';
 import { removeFavourite } from './application/removeFavourite';
+import { Book } from './domain/Book';
 
 library.add(faSearch);
 library.add(faStar);
@@ -33,28 +34,31 @@ interface State {
 }
 
 class App extends React.Component<Props, State> {
-  state = {
+  state: State = {
     books: [],
     searchQuery: '',
     showFavourites: false,
     favourites: []
   };
 
-  componentDidMount() {
+  componentDidMount(): void {
     this.setState({ favourites: getFavourites() });
   }
 
-  updateSearchQuery = async query => {
+  updateSearchQuery: (query: string) => void = async query => {
     this.setState({ searchQuery: query });
     if (!this.state.showFavourites) this.throttledSearchBooks(query);
   };
 
-  throttledSearchBooks = throttle(async query => {
-    const books = query ? await searchBooks(query) : [];
-    this.setState({ books });
-  }, 200);
+  throttledSearchBooks: (query: string) => void = throttle(
+    async (query: string) => {
+      const books = query ? await searchBooks(query) : [];
+      this.setState({ books });
+    },
+    200
+  );
 
-  toggleShowFavourites = () => {
+  toggleShowFavourites = (): void => {
     this.state.showFavourites
       ? this.throttledSearchBooks(this.state.searchQuery)
       : this.setState({ books: this.state.favourites });
@@ -62,19 +66,19 @@ class App extends React.Component<Props, State> {
     this.setState({ showFavourites: !this.state.showFavourites });
   };
 
-  addToFavourites = book => {
+  addToFavourites = (book: Book): void => {
     const newFavourites = addFavourite(book);
     this.setState({ favourites: newFavourites });
     if (this.state.showFavourites) this.setState({ books: newFavourites });
   };
 
-  removeFromFavourites = book => {
+  removeFromFavourites = (book: Book): void => {
     const newFavourites = removeFavourite(book);
     this.setState({ favourites: newFavourites });
     if (this.state.showFavourites) this.setState({ books: newFavourites });
   };
 
-  render() {
+  render(): React.ReactElement {
     const { books, searchQuery, showFavourites, favourites } = this.state;
 
     return (
@@ -90,8 +94,8 @@ class App extends React.Component<Props, State> {
           />
           <StyledBooksContainer>
             {books.length ? (
-              books.map(book => (
-                <Book
+              books.map((book: Book) => (
+                <BookCard
                   key={book.id}
                   book={book}
                   onAddToFavourites={

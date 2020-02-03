@@ -1,18 +1,27 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Book as BookDomain } from '../../domain';
+import React from 'react';
+import { Book } from '../../domain';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { Modal } from '../ui/Modal/Modal';
 import { StyledBook } from './StyledBook';
 import { DARK_GRAY, BLUE } from '../ui/styles/constants';
 
-export class Book extends Component {
-  state = {
+interface Props {
+  book: Book;
+  onAddToFavourites: (book: Book) => void;
+  isFavourite: boolean;
+}
+
+interface State {
+  isModalOpen: boolean;
+}
+
+export class BookCard extends React.Component<Props, State> {
+  state: State = {
     isModalOpen: false
   };
 
-  render() {
+  render(): React.ReactElement {
     const { book, onAddToFavourites, isFavourite } = this.props;
     const {
       smallThumbnailLink,
@@ -33,11 +42,11 @@ export class Book extends Component {
             src={smallThumbnailLink}
             alt=""
             className="thumbnail"
-            onClick={() => this.setState({ isModalOpen: true })}
+            onClick={(): void => this.setState({ isModalOpen: true })}
           />
           <div
             className="info"
-            onClick={() => this.setState({ isModalOpen: true })}
+            onClick={(): void => this.setState({ isModalOpen: true })}
           >
             <p className="title">{title}</p>
             {authors && authors.length && (
@@ -50,10 +59,10 @@ export class Book extends Component {
             icon={faStar}
             size="2x"
             title="Favourite this book"
-            onClick={() => onAddToFavourites(book)}
+            onClick={(): void => onAddToFavourites(book)}
           />
           {isModalOpen && (
-            <Modal onClose={() => this.setState({ isModalOpen: false })}>
+            <Modal onClose={(): void => this.setState({ isModalOpen: false })}>
               <div className="header">
                 <img className="thumbnail" src={thumbnailLink} alt="" />
                 <div className="info">
@@ -74,9 +83,3 @@ export class Book extends Component {
     );
   }
 }
-
-Book.propTypes = {
-  book: PropTypes.shape(BookDomain).isRequired,
-  onAddToFavourites: PropTypes.func.isRequired,
-  isFavourite: PropTypes.bool.isRequired
-};

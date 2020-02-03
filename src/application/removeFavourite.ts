@@ -1,5 +1,5 @@
 import BooksRepository from '../infra/BooksRepository';
-import { Book } from '../domain';
+import { Book, BookDTO } from '../domain';
 
-export const removeFavourite = book =>
-  BooksRepository.removeFavourite(book.dto).map(book => new Book(book));
+export const removeFavourite = (book: Book): Book[] =>
+  BooksRepository.removeFavourite(book).map((book: BookDTO) => new Book(book));

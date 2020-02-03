@@ -1,6 +1,7 @@
 import Styled from 'styled-components';
 import { LIGHT_GRAY, DARK_GRAY } from '../styles/constants';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const StyledSearchInput = Styled.div`
   position: relative;
   width: 100%;

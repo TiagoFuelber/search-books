@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Roboto', sans-serif;

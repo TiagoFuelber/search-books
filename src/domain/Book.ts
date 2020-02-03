@@ -1,5 +1,31 @@
+export declare interface BookDTO {
+  id: string;
+  volumeInfo: {
+    title: string;
+    subtitle: string;
+    authors: string[];
+    description: string;
+    pageCount: number;
+    imageLinks: {
+      smallThumbnail: string;
+      thumbnail: string;
+    };
+    publishedDate: Date;
+  };
+}
+
 export class Book {
-  constructor({ id, volumeInfo }) {
+  _id: string;
+  _title: string;
+  _subtitle: string;
+  _authors: string[];
+  _description: string;
+  _pageCount: number;
+  _smallThumbnailLink: string;
+  _thumbnailLink: string;
+  _publishedDate: Date;
+
+  constructor({ id, volumeInfo }: BookDTO) {
     this._id = id;
     this._title = volumeInfo.title || '(no title)';
     this._subtitle = volumeInfo.subtitle || null;
@@ -11,43 +37,43 @@ export class Book {
     this._publishedDate = new Date(volumeInfo.publishedDate) || null;
   }
 
-  get id() {
+  get id(): string {
     return this._id;
   }
 
-  get title() {
+  get title(): string {
     return this._title;
   }
 
-  get subtitle() {
+  get subtitle(): string {
     return this._subtitle;
   }
 
-  get authors() {
+  get authors(): string[] {
     return this._authors;
   }
 
-  get description() {
+  get description(): string {
     return this._description;
   }
 
-  get pageCount() {
+  get pageCount(): number {
     return this._pageCount;
   }
 
-  get smallThumbnailLink() {
+  get smallThumbnailLink(): string {
     return this._smallThumbnailLink;
   }
 
-  get thumbnailLink() {
+  get thumbnailLink(): string {
     return this._thumbnailLink;
   }
 
-  get publishedDate() {
+  get publishedDate(): Date {
     return this._publishedDate;
   }
 
-  get dto() {
+  get dto(): BookDTO {
     return {
       id: this._id,
       volumeInfo: {

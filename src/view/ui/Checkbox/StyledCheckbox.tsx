@@ -1,6 +1,7 @@
 import Styled from 'styled-components';
 import { DARK_GRAY, LIGHT_GRAY, BLUE } from '../styles/constants';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const StyledCheckbox = Styled.label`
   display: inline-flex;
   align-items: center;
