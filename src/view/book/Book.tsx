@@ -10,6 +10,8 @@ interface Props {
   book: Book;
   onAddToFavourites: (book: Book) => void;
   isFavourite: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  style?: any;
 }
 
 interface State {
@@ -53,14 +55,17 @@ export class BookCard extends React.Component<Props, State> {
               <p className="authors">{authors.join(', ')}</p>
             )}
           </div>
-          <FontAwesomeIcon
-            style={{ color: isFavourite ? `${BLUE}` : `${DARK_GRAY}` }}
+          <div
             className="favourite"
-            icon={faStar}
-            size="2x"
-            title="Favourite this book"
             onClick={(): void => onAddToFavourites(book)}
-          />
+          >
+            <FontAwesomeIcon
+              className={`${isFavourite ? 'blue' : 'dark-grey'}`}
+              icon={faStar}
+              size="2x"
+              title="Favourite this book"
+            />
+          </div>
           {isModalOpen && (
             <Modal onClose={(): void => this.setState({ isModalOpen: false })}>
               <div className="header">

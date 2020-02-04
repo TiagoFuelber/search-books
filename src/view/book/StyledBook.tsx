@@ -1,5 +1,5 @@
 import Styled from 'styled-components';
-import { LIGHT_GRAY } from '../ui/styles/constants';
+import { LIGHT_GRAY, BLUE, DARK_GRAY } from '../ui/styles/constants';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const StyledBook = Styled.div`
@@ -40,6 +40,16 @@ export const StyledBook = Styled.div`
   .modal {
     .header {
       display: flex;
+    }
+  }
+
+  .favourite {
+    .blue {
+      color: ${BLUE};
+    }
+
+    .dark-grey {
+      color: ${DARK_GRAY};
     }
   }
 `;

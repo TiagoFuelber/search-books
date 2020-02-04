@@ -3,7 +3,10 @@ import { StyledSearchInput } from './StyledSearchInput';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
-interface Props {}
+interface Props {
+  className?: string;
+  onChange: ({ target }: Event) => void;
+}
 
 export const SearchInput = (props: Props): React.ReactElement => (
   <StyledSearchInput>

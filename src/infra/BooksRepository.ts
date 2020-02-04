@@ -41,8 +41,8 @@ const addFavourite = (book: Book): BookDTO[] => {
 const removeFavourite = (book: Book): BookDTO[] => {
   const books = JSON.parse(localStorage.getItem(FAVOURITES_TABLE_NAME));
   const index = books
-    .map((item: Book, index: number) => ({ id: item.id, index }))
-    .filter((item: Book) => item.id === book.id)[0].index;
+    .map((item: Book, index: number) => ({ id: item._id, index }))
+    .filter((item: Book) => item.id === book._id)[0].index;
 
   books.splice(index, 1);
   localStorage.setItem(FAVOURITES_TABLE_NAME, JSON.stringify([...books]));

@@ -4,9 +4,9 @@ export const throttle = (
   limit: number
 ): ((args: any) => void) => {
   let inThrottle: boolean;
-  return function(args: any): void {
+  return function(...args: any): void {
     if (!inThrottle) {
-      func.apply(this, ...args);
+      func.apply(this, [...args]);
       inThrottle = true;
       setTimeout(() => (inThrottle = false), limit);
     }

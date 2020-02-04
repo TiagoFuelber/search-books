@@ -1,5 +1,14 @@
 export declare interface BookDTO {
   id: string;
+  _id?: string;
+  _title?: string;
+  _subtitle?: string;
+  _authors?: string[];
+  _description?: string;
+  _pageCount?: number;
+  _smallThumbnailLink?: string;
+  _thumbnailLink?: string;
+  _publishedDate?: Date;
   volumeInfo: {
     title: string;
     subtitle: string;
@@ -25,16 +34,23 @@ export class Book {
   _thumbnailLink: string;
   _publishedDate: Date;
 
-  constructor({ id, volumeInfo }: BookDTO) {
-    this._id = id;
-    this._title = volumeInfo.title || '(no title)';
-    this._subtitle = volumeInfo.subtitle || null;
-    this._authors = volumeInfo.authors || null;
-    this._description = volumeInfo.description || null;
-    this._pageCount = volumeInfo.pageCount;
-    this._smallThumbnailLink = volumeInfo.imageLinks.smallThumbnail || null;
-    this._thumbnailLink = volumeInfo.imageLinks.thumbnail;
-    this._publishedDate = new Date(volumeInfo.publishedDate) || null;
+  constructor(bookDTO: BookDTO) {
+    this._id = bookDTO._id || bookDTO.id;
+    this._title = bookDTO._title || bookDTO.volumeInfo?.title || '(no title)';
+    this._subtitle = bookDTO._subtitle || bookDTO.volumeInfo?.subtitle || null;
+    this._authors = bookDTO._authors || bookDTO.volumeInfo?.authors || null;
+    this._description =
+      bookDTO._description || bookDTO.volumeInfo?.description || null;
+    this._pageCount = bookDTO._pageCount || bookDTO.volumeInfo?.pageCount;
+    this._smallThumbnailLink =
+      bookDTO._smallThumbnailLink ||
+      bookDTO.volumeInfo?.imageLinks?.smallThumbnail ||
+      null;
+    this._thumbnailLink =
+      bookDTO._thumbnailLink || bookDTO.volumeInfo?.imageLinks?.thumbnail;
+    this._publishedDate =
+      new Date(bookDTO._publishedDate || bookDTO.volumeInfo?.publishedDate) ||
+      null;
   }
 
   get id(): string {
