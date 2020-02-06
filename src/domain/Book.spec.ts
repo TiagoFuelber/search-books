@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { Book } from './Book';
+import { Book } from './Book.ts';
 
 describe('Book domain', () => {
   context('should instantiate a Book object correctly', () => {

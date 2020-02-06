@@ -20,9 +20,12 @@ import { throttle } from './helpers/throttle';
 import { removeFavourite } from './application/removeFavourite';
 import { Book } from './domain/Book';
 
-library.add(faSearch);
-library.add(faStar);
-library.add(faTimes);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const myLibrary: any = library;
+
+myLibrary.add(faSearch);
+myLibrary.add(faStar);
+myLibrary.add(faTimes);
 
 interface Props {}
 
