@@ -8,7 +8,7 @@ export declare interface BookDTO {
   _pageCount?: number;
   _smallThumbnailLink?: string;
   _thumbnailLink?: string;
-  _publishedDate?: Date;
+  _publishedDate?: Date | string;
   volumeInfo: {
     title: string;
     subtitle: string;
@@ -19,7 +19,8 @@ export declare interface BookDTO {
       smallThumbnail: string;
       thumbnail: string;
     };
-    publishedDate: Date;
+    publisher: string;
+    publishedDate: Date | string;
   };
 }
 
@@ -102,6 +103,7 @@ export class Book {
           smallThumbnail: this._smallThumbnailLink,
           thumbnail: this._thumbnailLink
         },
+        publisher: '',
         publishedDate: this._publishedDate
       }
     };
