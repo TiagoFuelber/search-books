@@ -1,9 +1,9 @@
 import { expect } from 'chai';
-import { Book } from './Book.ts';
+import { Book, BookDTO } from './Book';
 
 describe('Book domain', () => {
   context('should instantiate a Book object correctly', () => {
-    const bookJson = {
+    const bookJson: BookDTO = {
       kind: 'books#volume',
       id: 'jAnAZO6EE40C',
       etag: 'QfHNtboaA8c',
@@ -76,51 +76,51 @@ describe('Book domain', () => {
       }
     };
 
-    let book;
+    let book: Book;
 
     beforeEach(() => {
       book = new Book(bookJson);
     });
 
-    it('should be possible to get Book\'s id', () => {
+    it('should be possible to get id of the Books', () => {
       expect(book.id).to.be.eql('jAnAZO6EE40C');
     });
 
-    it('should be possible to get Book\'s title', () => {
+    it('should be possible to get title of the book', () => {
       expect(book.title).to.be.equal('Querido John');
     });
 
-    it('should be possible to get Book\'s subtitle', () => {
+    it('should be possible to get subtitle of the book', () => {
       expect(book.subtitle).to.be.equal('A vida de John');
     });
 
-    it('should be possible to get Book\'s authors', () => {
+    it('should be possible to get authors of the book', () => {
       expect(book.authors).to.be.eql(['Nicholas Sparks']);
     });
 
-    it('should be possible to get Book\'s description', () => {
+    it('should be possible to get description of the book', () => {
       expect(book.description).to.be.equal(
         'Quando Savannah Lynn Curtis entra em sua vida, John Tyree sabe que está pronto para começar tudo de novo. Ele, um jovem rebelde, se alista no exército logo após terminar a escola, sem saber o que faria de sua vida. Então, durante sua licença, ele conhece Savannah, a garota de seus sonhos. A atração mútua cresce rapidamente e logo transforma-se em um amor que faz com que Savannah jure esperá-lo concluir seus deveres militares. Mas ninguém pôde prever que os atentados de 11 de Setembro pudessem mudar o mundo todo. E como muitos homens e mulheres corajosos, John deveria escolher entre seu amor por Savannah e seu país. Agora, quando ele finalmente retorna para Carolina do Norte, John descobre como o amor pode transformar as pessoas de uma forma que jamais poderia imaginar.'
       );
     });
 
-    it('should be possible to get Book\'s page count', () => {
+    it('should be possible to get page count of the book', () => {
       expect(book.pageCount).to.be.equal(287);
     });
 
-    it('should be possible to get Book\'s small thumbnail image link', () => {
+    it('should be possible to get small thumbnail image link of the book', () => {
       expect(book.smallThumbnailLink).to.be.equal(
         'http://books.google.com/books/content?id=jAnAZO6EE40C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api'
       );
     });
 
-    it('should be possible to get Book\'s thumbnail image link', () => {
+    it('should be possible to get thumbnail image link of the book', () => {
       expect(book.thumbnailLink).to.be.equal(
         'http://books.google.com/books/content?id=jAnAZO6EE40C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'
       );
     });
 
-    it('should be possible to get Books\'s publish date', () => {
+    it('should be possible to get publish date of the book', () => {
       expect(book.publishedDate).to.be.eql(new Date('2010'));
     });
 
